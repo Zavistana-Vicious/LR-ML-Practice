@@ -9,8 +9,8 @@ class csvData(torch.utils.data.Dataset):
     def __init__(self, csv_path):
         self.data = pd.read_csv(csv_path)
         self.data.loc[self.data.species=='Iris-setosa', 'species'] = 0
-        self.data.loc[self.data.species=='Iris-versicolor', 'species'] = 1
-        self.data.loc[self.data.species=='Iris-virginica', 'species'] = 0
+        self.data.loc[self.data.species=='Iris-versicolor', 'species'] = 0
+        self.data.loc[self.data.species=='Iris-virginica', 'species'] = 1
         # (Rows, Columns) of data
         self.shape = self.data.shape
         # split into x (inputs) and y (outputs)
@@ -54,13 +54,13 @@ train_indices, val_indices = indices[split:], indices[:split]
 # Setting up the Loss Function
 criterion = torch.nn.BCELoss(size_average=True)
 # Optimization Function
-optimizer = torch.optim.SGD(LRmodel.parameters(), lr=0.01)
+optimizer = torch.optim.Rprop(LRmodel.parameters(), lr=0.01)
 
 # Training the Model
 X = torch.Tensor(IRISdata.x[train_indices])
 Y = torch.Tensor(IRISdata.y[train_indices])
 
-for epoch in range(100):
+for epoch in range(150):
     LRmodel.train()
     optimizer.zero_grad()
     # Forward pass
