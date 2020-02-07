@@ -31,5 +31,5 @@ fig1.set_ylabel("probability of virginica")
 fig1.set_title("probability of virginica vs features.;")
 
 # compare petal width and length
-fig2 = plt.subplot()
-fig2.plot(x_new[:, 2], x_new[:, 3])
+'''fig2 = plt.subplot()
+fig2.plot(x_new[:, 2], x_new[:, 3])'''
