@@ -60,7 +60,7 @@ optimizer = torch.optim.Rprop(LRmodel.parameters(), lr=0.01)
 X = torch.Tensor(IRISdata.x[train_indices])
 Y = torch.Tensor(IRISdata.y[train_indices])
 
-for epoch in range(30):
+for epoch in range(200):
     LRmodel.train()
     optimizer.zero_grad()
     # Forward pass
@@ -70,6 +70,7 @@ for epoch in range(30):
     # Backward pass
     loss.backward()
     optimizer.step()
+    print(loss)
     
 # Get Prediction
 X = torch.Tensor(IRISdata.x[val_indices])
